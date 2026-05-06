@@ -1,169 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Portal</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="javas.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Portal</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <h2 class="logo">🎓 Student Portal</h2>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#" onclick="showPage('home')" class="nav-link">🏠 Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" onclick="showPage('profile')" class="nav-link">👤 Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" onclick="showPage('quiz')" class="nav-link">📝 Quiz</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" onclick="showPage('grades')" class="nav-link">📊 Grades</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
 
-    <!-- Pages Container -->
-    <div class="container">
-        <!-- Home Page -->
-        <div id="home" class="page active">
-            <div class="welcome-section">
-                <h1>Welcome to Student Portal!</h1>
-                <p>Manage your profile, take quizzes, and check your grades here.</p>
-                <div class="quick-stats">
-                    <div class="stat-card">
-                        <h3>5</h3>
-                        <p>Quizzes Taken</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>87%</h3>
-                        <p>Average Score</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>A</h3>
-                        <p>Current Grade</p>
-                    </div>
-                </div>
-            </div>
+<!-- Sidebar -->
+<div class="sidebar">
+    <h2>🎓 Portal</h2>
+    <ul>
+        <li class="active" onclick="showPage('home',this)">Dashboard</li>
+        <li onclick="showPage('quiz',this)">Quiz</li>
+        <li onclick="showPage('grades',this)">Grades</li>
+        <li onclick="showPage('profile',this)">Profile</li>
+    </ul>
+</div>
+
+<!-- Main -->
+<div class="main">
+
+<!-- DASHBOARD -->
+<div id="home" class="page active">
+    <h1>Welcome Back 👋</h1>
+
+    <div class="cards">
+        <div class="card"><h2>6</h2><p>Quizzes Done</p></div>
+        <div class="card"><h2>82%</h2><p>Average Score</p></div>
+        <div class="card"><h2>B+</h2><p>Grade</p></div>
+    </div>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz" class="page">
+    <h1>Quiz</h1>
+
+    <div class="quiz-box">
+        <div class="progress">
+            <div id="progressBar"></div>
         </div>
 
-        <!-- Profile Page -->
-        <div id="profile" class="page">
-            <h1>Personal Information</h1>
-            <form id="profileForm" class="profile-form">
-                <div class="form-group">
-                    <label>Full Name:</label>
-                    <input type="text" id="fullName" value="John Doe">
-                </div>
-                <div class="form-group">
-                    <label>Student ID:</label>
-                    <input type="text" id="studentId" value="STU2024001">
-                </div>
-                <div class="form-group">
-                    <label>Email:</label>
-                    <input type="email" id="email" value="john.doe@student.com">
-                </div>
-                <div class="form-group">
-                    <label>Phone:</label>
-                    <input type="tel" id="phone" value="+1 (555) 123-4567">
-                </div>
-                <div class="form-group">
-                    <label>Course:</label>
-                    <select id="course">
-                        <option value="Computer Science">Computer Science</option>
-                        <option value="Mathematics">Mathematics</option>
-                        <option value="Physics">Physics</option>
-                        <option value="Chemistry">Chemistry</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Semester:</label>
-                    <select id="semester">
-                        <option value="1">1st Semester</option>
-                        <option value="2">2nd Semester</option>
-                        <option value="3">3rd Semester</option>
-                        <option value="4">4th Semester</option>
-                    </select>
-                </div>
-                <button type="button" onclick="saveProfile()" class="save-btn">💾 Save Changes</button>
-            </form>
-        </div>
+        <h3 id="question"></h3>
 
-        <!-- Quiz Page -->
-        <div id="quiz" class="page">
-            <h1>📝 Mathematics Quiz</h1>
-            <div id="quizContainer">
-                <div class="question-container" id="question1">
-                    <h3>Question 1/5</h3>
-                    <p id="questionText">What is 15 + 27?</p>
-                    <div class="options">
-                        <label><input type="radio" name="q1" value="42"> 42</label><br>
-                        <label><input type="radio" name="q1" value="40"> 40</label><br>
-                        <label><input type="radio" name="q1" value="44"> 44</label><br>
-                        <label><input type="radio" name="q1" value="38"> 38</label>
-                    </div>
-                    <button onclick="nextQuestion(1)" class="next-btn">Next →</button>
-                </div>
-            </div>
-            <div id="quizResult" class="result" style="display: none;">
-                <h2>Your Score: <span id="finalScore">0</span>/5</h2>
-                <button onclick="resetQuiz()" class="retake-btn">🔄 Retake Quiz</button>
-            </div>
-        </div>
+        <div id="options" class="options"></div>
 
-        <!-- Grades Page -->
-        <div id="grades" class="page">
-            <h1>📊 Your Grades</h1>
-            <div class="grades-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Subject</th>
-                            <th>Score</th>
-                            <th>Grade</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Mathematics</td>
-                            <td>92</td>
-                            <td>A</td>
-                            <td>✅ Pass</td>
-                        </tr>
-                        <tr>
-                            <td>Physics</td>
-                            <td>78</td>
-                            <td>B</td>
-                            <td>✅ Pass</td>
-                        </tr>
-                        <tr>
-                            <td>Chemistry</td>
-                            <td>85</td>
-                            <td>B+</td>
-                            <td>✅ Pass</td>
-                        </tr>
-                        <tr>
-                            <td>English</td>
-                            <td>88</td>
-                            <td>A-</td>
-                            <td>✅ Pass</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="grade-summary">
-                <h3>Overall GPA: 3.4/4.0</h3>
-            </div>
-        </div>
+        <button onclick="nextQuestion()">Next</button>
     </div>
 
-    <script src="script.js"></script>
+    <h2 id="score"></h2>
+</div>
+
+<!-- GRADES -->
+<div id="grades" class="page">
+    <h1>Grades</h1>
+
+    <table>
+        <tr><th>Subject</th><th>Score</th><th>Grade</th></tr>
+        <tr><td>Math</td><td>92</td><td>A</td></tr>
+        <tr><td>Physics</td><td>80</td><td>B+</td></tr>
+        <tr><td>Chemistry</td><td>85</td><td>B+</td></tr>
+    </table>
+</div>
+
+<!-- PROFILE -->
+<div id="profile" class="page">
+    <h1>Profile</h1>
+
+    <form class="profile-form">
+        <input placeholder="Full Name">
+        <input placeholder="Email">
+        <input placeholder="Phone">
+        <button type="button">Save</button>
+    </form>
+</div>
+
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
