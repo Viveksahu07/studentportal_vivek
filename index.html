@@ -12,41 +12,51 @@
 
 <!-- Sidebar -->
 <div class="sidebar">
-    <h2>🎓 Portal</h2>
+    <h2>🎓 Student</h2>
     <ul>
-        <li onclick="showPage('home')">🏠 Dashboard</li>
-        <li onclick="showPage('profile')">👤 Profile</li>
-        <li onclick="showPage('quiz')">📝 Quiz</li>
-        <li onclick="showPage('grades')">📊 Grades</li>
+        <li class="active" onclick="showPage('home', this)">Dashboard</li>
+        <li onclick="showPage('profile', this)">Profile</li>
+        <li onclick="showPage('quiz', this)">Quiz</li>
+        <li onclick="showPage('grades', this)">Grades</li>
     </ul>
 </div>
 
-<!-- Main -->
+<!-- Main Content -->
 <div class="main">
 
 <!-- HOME -->
 <div id="home" class="page active">
-    <div class="hero">
-        <h1>Welcome Back 👋</h1>
-        <p>Your learning dashboard</p>
+    <div class="header">
+        <h1>Dashboard</h1>
+        <p>Welcome back, Student 👋</p>
     </div>
 
     <div class="cards">
-        <div class="card"><h2>5</h2><p>Quizzes</p></div>
-        <div class="card"><h2>87%</h2><p>Average</p></div>
-        <div class="card"><h2>A</h2><p>Grade</p></div>
+        <div class="card">
+            <h2>5</h2>
+            <p>Quizzes Completed</p>
+        </div>
+        <div class="card">
+            <h2>87%</h2>
+            <p>Average Score</p>
+        </div>
+        <div class="card">
+            <h2>A</h2>
+            <p>Current Grade</p>
+        </div>
     </div>
 </div>
 
 <!-- PROFILE -->
 <div id="profile" class="page">
     <h1>Profile</h1>
+
     <form class="profile-form">
         <input placeholder="Full Name">
         <input placeholder="Email">
         <input placeholder="Student ID">
         <input placeholder="Phone">
-        <button type="button">Save</button>
+        <button type="button">Save Changes</button>
     </form>
 </div>
 
@@ -54,13 +64,13 @@
 <div id="quiz" class="page">
     <h1>Math Quiz</h1>
 
-    <div id="quizBox">
-        <p id="question">What is 5 + 5?</p>
+    <div class="quiz-box">
+        <p id="question">What is 12 + 8?</p>
 
         <div class="options">
-            <label><input type="radio" name="q" value="10"> 10</label>
-            <label><input type="radio" name="q" value="9"> 9</label>
-            <label><input type="radio" name="q" value="8"> 8</label>
+            <label><input type="radio" name="q" value="20"> 20</label>
+            <label><input type="radio" name="q" value="18"> 18</label>
+            <label><input type="radio" name="q" value="22"> 22</label>
         </div>
 
         <button onclick="checkAnswer()">Submit</button>
@@ -71,14 +81,25 @@
 
 <!-- GRADES -->
 <div id="grades" class="page">
-    <h1>Grades</h1>
+    <h1>Your Grades</h1>
 
-    <table>
-        <tr><th>Subject</th><th>Score</th><th>Grade</th></tr>
-        <tr><td>Math</td><td>92</td><td>A</td></tr>
-        <tr><td>Physics</td><td>78</td><td>B</td></tr>
-        <tr><td>Chemistry</td><td>85</td><td>B+</td></tr>
-    </table>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Score</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Mathematics</td><td>92</td><td>A</td></tr>
+                <tr><td>Physics</td><td>78</td><td>B</td></tr>
+                <tr><td>Chemistry</td><td>85</td><td>B+</td></tr>
+                <tr><td>English</td><td>88</td><td>A-</td></tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 </div>
